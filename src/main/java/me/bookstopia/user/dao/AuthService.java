@@ -5,6 +5,7 @@ import me.bookstopia.security.JwtDto;
 import me.bookstopia.security.JwtProvider;
 import me.bookstopia.user.domain.UserEntity;
 import me.bookstopia.user.dto.UserRequestDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -52,5 +54,10 @@ public class AuthService {
                 .role("ROLE_USER")
                 .build();
         return this.userRepository.save(user);
+    }
+
+    public UserEntity validate(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserEntity 조회 실패"));
     }
 }
