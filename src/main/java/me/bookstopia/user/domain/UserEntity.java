@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.bookstopia.common.AutoDate;
+import me.bookstopia.common.util.AutoDate;
 
 import java.time.LocalDateTime;
 

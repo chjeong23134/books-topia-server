@@ -1,4 +1,4 @@
-package me.bookstopia.common;
+package me.bookstopia.common.util;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
