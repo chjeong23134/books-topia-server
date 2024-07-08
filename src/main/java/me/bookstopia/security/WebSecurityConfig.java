@@ -39,7 +39,7 @@ public class WebSecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/auth/signin", "/auth/signup").permitAll()
                         .anyRequest().authenticated());
 
         http

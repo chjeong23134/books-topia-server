@@ -1,18 +1,17 @@
 package me.bookstopia.aladin.dao;
 
-import me.bookstopia.common.SearchStatus;
+import me.bookstopia.aladin.response.AladinSearchResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class AladinService {
     private final RestTemplate restTemplate;
 
-    @Value("${jwt.secret}")
+    @Value("${aladin.ttb}")
     private String key;
 
     private static final String ALADIN_URL = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx";
@@ -21,10 +20,10 @@ public class AladinService {
         this.restTemplate = restTemplate;
     }
 
-    public List<String> find(String searchWord, SearchStatus type) {
+    public AladinSearchResponse find(String searchWord) {
         String url = String.format("%s?ttbkey=%s&Query=%s&SearchTarget=Book&output=js&Version=20131101",
-                ALADIN_URL, key, type.getLabel());
+                ALADIN_URL, key, searchWord);
 
-        return restTemplate.getForObject(url, AladinResponse.class);
+        return restTemplate.getForObject(url, AladinSearchResponse.class);
     }
 }

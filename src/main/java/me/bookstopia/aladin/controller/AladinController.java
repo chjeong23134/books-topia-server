@@ -2,6 +2,7 @@ package me.bookstopia.aladin.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.bookstopia.aladin.dao.AladinService;
+import me.bookstopia.aladin.response.AladinSearchResponse;
 import me.bookstopia.common.SearchStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequestMapping("/aladin")
 public class AladinController {
     private final AladinService aladinService;
-    public ResponseEntity<List<String>> list(@RequestParam String searchWord, SearchStatus type) {
-        return new ResponseEntity<>(this.aladinService.find(searchWord, type), HttpStatus.OK);
+    public ResponseEntity<AladinSearchResponse> list(@RequestParam String searchWord) {
+        return new ResponseEntity<>(this.aladinService.find(searchWord), HttpStatus.OK);
     }
 }
