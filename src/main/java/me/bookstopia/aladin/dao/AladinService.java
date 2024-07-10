@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class AladinService {
+    private static final Logger logger = Logger.getLogger(AladinService.class.getName());
+
     private final RestTemplate restTemplate;
 
     @Value("${aladin.ttb}")
@@ -24,6 +27,8 @@ public class AladinService {
         String url = String.format("%s?ttbkey=%s&Query=%s&SearchTarget=Book&output=js&Version=20131101",
                 ALADIN_URL, key, searchWord);
 
-        return restTemplate.getForObject(url, AladinSearchResponse.class);
+        AladinSearchResponse res = restTemplate.getForObject(url, AladinSearchResponse.class);
+
+        return res;
     }
 }

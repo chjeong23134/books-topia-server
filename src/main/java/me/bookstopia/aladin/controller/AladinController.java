@@ -6,10 +6,7 @@ import me.bookstopia.aladin.response.AladinSearchResponse;
 import me.bookstopia.common.SearchStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,9 @@ import java.util.List;
 @RequestMapping("/aladin")
 public class AladinController {
     private final AladinService aladinService;
-    public ResponseEntity<AladinSearchResponse> list(@RequestParam String searchWord) {
+
+    @GetMapping
+    public ResponseEntity<AladinSearchResponse> list(@RequestParam(name = "sr") String searchWord) {
         return new ResponseEntity<>(this.aladinService.find(searchWord), HttpStatus.OK);
     }
 }

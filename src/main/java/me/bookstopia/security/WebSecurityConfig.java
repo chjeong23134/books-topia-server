@@ -20,6 +20,10 @@ public class WebSecurityConfig {
     private final JwtProvider jwtProvider;
     private final JwtUserDetailsService jwtUserDetailsService;
 
+    private static final String [] AUTH_URI = {
+            "/auth/signin", "/auth/signup"
+    };
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -39,7 +43,7 @@ public class WebSecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/signin", "/auth/signup").permitAll()
+                        .requestMatchers(AUTH_URI).permitAll()
                         .anyRequest().authenticated());
 
         http
