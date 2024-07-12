@@ -24,9 +24,9 @@ public class AladinService {
         this.restTemplate = restTemplate;
     }
 
-    public AladinSearchResponse findByKeyWord(String keyWord) {
+    public AladinSearchResponse findByKeyWord(String keyword) {
         String url = String.format("%sItemSearch.aspx?ttbkey=%s&Query=%s&SearchTarget=Book&output=js&Version=20131101",
-                ALADIN_URL, key, keyWord);
+                ALADIN_URL, key, keyword);
 
         return restTemplate.getForObject(url, AladinSearchResponse.class);
     }

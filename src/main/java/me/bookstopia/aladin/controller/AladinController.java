@@ -16,8 +16,8 @@ public class AladinController {
     private final AladinService aladinService;
 
     @GetMapping("/search")
-    public ResponseEntity<AladinSearchResponse> search(@RequestParam(name = "keyword") String keyWord) {
-        return new ResponseEntity<>(this.aladinService.findByKeyWord(keyWord), HttpStatus.OK);
+    public ResponseEntity<AladinSearchResponse> search(@RequestParam String keyword) {
+        return new ResponseEntity<>(this.aladinService.findByKeyWord(keyword), HttpStatus.OK);
     }
 
     @GetMapping("/list")
