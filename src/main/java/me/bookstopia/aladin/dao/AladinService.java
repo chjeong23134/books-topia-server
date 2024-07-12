@@ -17,18 +17,16 @@ public class AladinService {
     @Value("${aladin.ttb}")
     private String key;
 
-    private static final String ALADIN_URL = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx";
+    private static final String ALADIN_URL = "http://www.aladin.co.kr/ttb/api/";
 
     public AladinService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public AladinSearchResponse find(String searchWord) {
-        String url = String.format("%s?ttbkey=%s&Query=%s&SearchTarget=Book&output=js&Version=20131101",
-                ALADIN_URL, key, searchWord);
+    public AladinSearchResponse findByKeyWord(String keyWord) {
+        String url = String.format("ItemSearch.aspx%s?ttbkey=%s&Query=%s&SearchTarget=Book&output=js&Version=20131101",
+                ALADIN_URL, key, keyWord);
 
-        AladinSearchResponse res = restTemplate.getForObject(url, AladinSearchResponse.class);
-
-        return res;
+        return restTemplate.getForObject(url, AladinSearchResponse.class);
     }
 }
