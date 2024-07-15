@@ -8,7 +8,7 @@ import me.bookstopia.aladin.dto.BookDto;
 import java.util.List;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AladinSearchResponse {
+public class AladinResponse {
     private int totalResults;
     private int startIndex;
     private int itemsPerPage;
